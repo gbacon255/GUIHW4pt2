@@ -7,7 +7,7 @@ This file validates the user input and uses it to create a html table that displ
 
 
 //function to take parameter values and generate a table
-function generateTable(xStart, xEnd, yStart,yEnd){
+function generateTable(xStart, xEnd, yStart,yEnd, currentTab){
     //get the divs for our message boxes to use for display
     const xmessageDiv = document.getElementById('xmessage');
     const ymessageDiv = document.getElementById('ymessage');
@@ -60,7 +60,9 @@ function generateTable(xStart, xEnd, yStart,yEnd){
     }
 
     //get the div used to display the result
-    const resultDiv = document.getElementById('result');
+    var tabID = currentTab;
+    console.log(tabID)
+    const resultDiv = document.getElementById(`${tabID}`);
     //initialize table html object
     let table = '<table><thead><tr><th>-</th>';
     //create the top row of the table ${} allows us to include the var in our text

@@ -68,6 +68,7 @@ will activate my javascript code to validate the numbers, create the table, and 
                     <span class = "error" id="sideEndErr"></span>
                     <input type="button" value="Generate Table" id="tableGen">
                     <input type="button" value="Save Table" id="saveTable">
+                    <input type="button" value="Clear Tabs" id="clearTabs">
 
                     <div id="parse"></div>
                     <div id="xmessage"></div>
@@ -77,12 +78,17 @@ will activate my javascript code to validate the numbers, create the table, and 
 
             </form>
       
-        <!--This div section allows for the table and error message to be displayed, used in JS-->
+        <!--This div section allows for the table and error message to be displayed, used in JS
         <div id="container">
             <fieldset>
                 <legend>Table:</legend>
                 <div id="result"></div>
             </fieldset>
+        </div>
+    -->
+    
+        <div id="tabs">
+            <ul id="tabList"></ul>
         </div>
         <script src = "validate.js"></script>
     </body>

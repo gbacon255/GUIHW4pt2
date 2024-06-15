@@ -56,13 +56,13 @@ form{
     color: red;
 }
 /*Styling for loading text*/
-#result p{
+.mult p{
     text-size-adjust: larger;
     color: rgb(9, 122, 9);
 }
 
 /*Added a scrollable container for the table*/
-#container{
+.mult{
     float: right;
     width:100%;
     height: 500px;
@@ -70,13 +70,13 @@ form{
 }
 
 /*Adds border around the table*/
-#result table{
+.mult table{
     border: 1px solid black;
     
 }
 
 /*Adds border for the table data*/
-#result td{
+.mult td{
     border-bottom: 2px solid black;
     border-left: 2px solid black;
     text-align: center;
@@ -84,7 +84,7 @@ form{
 }
 
 /*Adds border and background for table headings*/
-#result th{
+.mult th{
     position: sticky;
     color: white;
     background-color: black;
@@ -96,19 +96,19 @@ form{
 }
 
 /*formatting to allow the table headers to stay in place*/
-#result th:nth-child(1) {
+.mult th:nth-child(1) {
     left: 0;
     z-index: 2; 
 }
 
 /*formatting to allow the table headers to stay in place*/
-#result th:not(:first-child) {
+.mult th:not(:first-child) {
     top: 0;
     z-index: 1;
 }
 
 /*Even rows of the table are highlighted for visibility*/
-#result td:nth-child(even){
+.mult td:nth-child(even){
     background-color: beige;
 }
 

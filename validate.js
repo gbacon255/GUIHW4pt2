@@ -17,13 +17,16 @@ $(document).ready(function(){
     $("#HighSStart").hide();
     $("#HighSEnd").hide();
 
+    var currentTab=1;
+    initializeTab();
+
     //initialize the sliders
     $("#tSSlider").slider({
         min: -75, //set the bounds for the slider
         max: 75,
         slide: function(event, ui) {
             $("#topStart").val(ui.value); // Update input field on slide
-            validate(); //validates numbers and generates table
+            validate(currentTab); //validates numbers and generates table
         }
     });
 
@@ -33,7 +36,7 @@ $(document).ready(function(){
         max: 75,
         slide: function(event, ui) {
             $("#topEnd").val(ui.value); // Update input field on slide
-            validate(); //validates numbers and generates table
+            validate(currentTab); //validates numbers and generates table
         }
     });
     //initialize the sliders
@@ -42,7 +45,7 @@ $(document).ready(function(){
         max: 75,
         slide: function(event, ui) {
             $("#sideStart").val(ui.value); // Update input field on slide
-            validate(); //validates numbers and generates table
+            validate(currentTab); //validates numbers and generates table
         }
     });
     //initialize the sliders
@@ -51,7 +54,7 @@ $(document).ready(function(){
         max: 75,
         slide: function(event, ui) {
             $("#sideEnd").val(ui.value); // Update input field on slide
-            validate(); //validates numbers and generates table
+            validate(currentTab); //validates numbers and generates table
         }
     });
     
@@ -74,7 +77,7 @@ $(document).ready(function(){
             console.log("ts input");
             var value = $(this).val(); //pulls the value from our input
             $("#tSSlider").slider("value",value); //takes that value and updates the slider with it
-            validate(); //validates numbers and generates table
+            validate(currentTab); //validates numbers and generates table
         }
     });
 
@@ -95,7 +98,7 @@ $(document).ready(function(){
             console.log("ts input");
             var value = $(this).val(); //pulls the value from our input
             $("#tESlider").slider("value",value); //takes that value and updates the slider with it
-            validate(); //validates numbers and generates table
+            validate(currentTab); //validates numbers and generates table
         }
     });
 
@@ -114,7 +117,7 @@ $(document).ready(function(){
             console.log("ts input");
             var value = $(this).val(); //pulls the value from our input
             $("#sSSlider").slider("value",value); //takes that value and updates the slider with it
-            validate(); //validates numbers and generates table
+            validate(currentTab); //validates numbers and generates table
         }
     });
     
@@ -132,28 +135,58 @@ $(document).ready(function(){
             console.log("ts input");
             var value = $(this).val(); //pulls the value from our input
             $("#sESlider").slider("value",value); //takes that value and updates the slider with it
-            validate(); //validates numbers and generates table
+            validate(currentTab); //validates numbers and generates table
         }
     });
 
     $("#tableGen").click(function(event){
-        validate(); //validate our numbers and generate the table
+        validate(currentTab); //validate our numbers and generate the table
     });
+
+    //Save table being pressed takes the table data and makes a new tab with it, old tab is no longer modifiable
     $("#saveTable").click(function(event){
         //get the table html from where its stored
-        var table = $("#result").html();
+        var table = $(`#${currentTab}`).html();
         if(table){
+            var tabNum = $("#tabs .ui-tabs-panel").length + 1;
+            var tabName = "Table "+tabNum;
+            var tabID = tabNum;
 
+            $("#tabList").append('<li><a href="#' + tabID + '">' + tabName + '</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Tab</span></li>');
+            $("#tabs").append('<div id="' + tabID + '" class = "mult">' + table + '</div>');
+            $("#tabs").tabs("refresh");
+            currentTab++;
         } else{
+            //throw an error if there is not a table (Depreciated edge case)
             console.log("here");
             $("#result").html("<h5>Please generate a table!<h5>");
         }
     });
+    //when the clear tab button is pressed we get rid of all the tabs
+    $("#clearTabs").click(function(event){
+        $("#tabs").html(''); //zeroize the html for tabs
+        $("#tabs").append('<ul id="tabList"></ul>')
+        initializeTab(); //create a first tab
+        currentTab = 1; //reset the tab counter
+    });
 });
 
+//initialize our tabs
+function initializeTab(){
+    $("#tabs").tabs();
+    var tabNum = 1;
+    var tabName = "Table "+tabNum;
+    var tabID = tabNum;
+
+    $("#tabList").append('<li><a href="#' + tabID + '">' + tabName + '</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Tab</span></li>');
+    $("#tabs").append('<div id="' + tabID + '" class = "mult"></div>');
+    $("#tabs").tabs("refresh");
+
+    $("#tabs").tabs("option", "active", tabNum);
+}
 
 //moved validation to its own function to clean up code, checks for four valid inputs before generating
-function validate(){
+function validate(currentTab){
     var validNum = 0;
     if($("#topStart").val() < -75){
         $("#errorTStart").hide();
@@ -250,6 +283,6 @@ function validate(){
         const tEnd = $("#topEnd").val();
         const sStart = $("#sideStart").val();
         const sEnd = $("#sideEnd").val();
-        generateTable(tStart,tEnd,sStart,sEnd);
+        generateTable(tStart,tEnd,sStart,sEnd, currentTab);
     }
 }
