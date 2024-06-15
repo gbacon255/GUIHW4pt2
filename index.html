@@ -1,0 +1,89 @@
+<!--
+File: index.html
+GUI Assignment: #3, Adding a multiplication table to a website
+Garrett Bacon, UMass Lowell Computer Science, Garrett_Bacon@student.uml.edu
+For this project, I prompt the user to enter the bounds for a multiplication table, upon entering the values it
+will activate my javascript code to validate the numbers, create the table, and display it on the webpage
+-->
+
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <!--Call on my javascript file-->
+        <script src = "init.js"></script>
+        <!--Initiate our jquery scripts-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.5/jquery.validate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        <!--<script src="validate.js"></script>-->
+        <meta charset="utf-8">
+        <title>GUIHW3</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <!--Body section to present text-->
+    <body>
+        <div class="input section">
+            <h1>Multiplication Table Generator</h1>
+            <h2>Please Enter Table Bounds (Integers -75 to 75) Below:</h2>
+            
+            <!--form for user input-->
+            <form class = "numForm" id="numberForm" name = "numberForm">
+                <fieldset>
+                    <legend>Please Enter Bounds for the Table below:</legend>
+
+                    <label for="topStart">Start number: (required) </label>
+                    <input type="number" id="topStart"name="topStart" required >
+                    <div class="slider" id="tSSlider"></div>
+                    <h5 id = "errorTStart">Value is required</h5>
+                    <h5 id = "LowTStart">Value is too low (minimum: -75)</h5>
+                    <h5 id = "HighTStart">Value is too high (maximum: 75)</h5>
+                    <br>
+
+                    <label for="topEnd">Top end number: (required) </label>
+                    <input type="number" id="topEnd" name="topEnd" required>
+                    <div class="slider" id="tESlider"></div>
+                    <h5 id = "errorTEnd">Value is required</h5>
+                    <h5 id = "LowTEnd">Value is too low (minimum: -75)</h5>
+                    <h5 id = "HighTEnd">Value is too high (maximum: 75)</h5>
+                    <br>
+    
+                    <label for="sideStart">Side start number: (required) </label>
+                    <input type="number" id="sideStart" name="sideStart" required>
+                    <div class="slider" id="sSSlider"></div>
+                    <h5 id = "errorSStart">Value is required</h5>
+                    <h5 id = "LowSStart">Value is too low (minimum: -75)</h5>
+                    <h5 id = "HighSStart">Value is too high (maximum: 75)</h5>
+                    <br>
+
+                    <label for="sideEnd">Side end number: (required) </label>
+                    <input type="number" id="sideEnd" name="sideEnd" required>
+                    <div class="slider" id="sESlider"></div>
+                    <h5 id = "errorSEnd">Value is required</h5>
+                    <h5 id = "LowSEnd">Value is too low (minimum: -75)</h5>
+                    <h5 id = "HighSEnd">Value is too high (maximum: 75)</h5>
+
+                    <br>
+                    <span class = "error" id="sideEndErr"></span>
+                    <input type="button" value="Generate Table" id="tableGen">
+                    <input type="button" value="Save Table" id="saveTable">
+
+                    <div id="parse"></div>
+                    <div id="xmessage"></div>
+                    <div id="ymessage"></div>
+
+                </fieldset>
+
+            </form>
+      
+        <!--This div section allows for the table and error message to be displayed, used in JS-->
+        <div id="container">
+            <fieldset>
+                <legend>Table:</legend>
+                <div id="result"></div>
+            </fieldset>
+        </div>
+        <script src = "validate.js"></script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+           var container = $("#error");
+
+                $("#numberForm").validate({
+                   rules: {
+                       topStart: {
+                           required: true,
+                           number: true
+                       },
+                       topEnd: {
+                           required: true,
+                           number: true
+                       },
+                       sideStart: {
+                           required: true,
+                           number: true
+                       },
+                       sideEnd: {
+                           required: true,
+                           number: true
+                       }
+                   },
+                   messages:{
+                       topStart:{
+                           required:"Please enter a valid number"
+                       }
+                   },
+                   errorContainer: container,
+			       errorLabelContainer: $("ol", container),
+			       wrapper: 'li'
+                });

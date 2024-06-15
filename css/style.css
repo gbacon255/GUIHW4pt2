@@ -1,0 +1,124 @@
+/*
+File: style.css
+GUI Assignment: #3, Adding a multiplication table to a website
+Garrett Bacon, UMass Lowell Computer Science, Garrett_Bacon@student.uml.edu
+This file does the styling for my table site.
+*/
+.slider{
+    margin: 15px;
+}
+/*Title at the top of the page*/
+h1{
+    background-color: #3399CC;
+    color: white;
+    box-shadow: 5px;
+    padding-bottom: 10px;
+}
+
+/*Error Message styling */
+h5{
+    font-style: italic;
+    color: red;
+    padding:0;
+    margin:0;
+    padding-bottom: -10px;
+    margin-bottom: -15px;
+
+}
+/*Styling for the user input form*/
+form{
+    margin-right: -30px;
+    display:inline-block;
+    padding-right: -15px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 5px;
+}
+
+/*Header styling for the error message*/
+#error h2{
+    color: red;
+}
+
+/*Styling for the error message box*/
+#error{
+    margin-right: 500px;
+    padding:20px;
+    padding-top: -10px;
+}
+
+.error li{
+    color: red;
+}
+/*Styling for loading text*/
+#result p{
+    text-size-adjust: larger;
+    color: rgb(9, 122, 9);
+}
+
+/*Added a scrollable container for the table*/
+#container{
+    float: right;
+    width:100%;
+    height: 500px;
+    overflow: auto;
+}
+
+/*Adds border around the table*/
+#result table{
+    border: 1px solid black;
+    
+}
+
+/*Adds border for the table data*/
+#result td{
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    text-align: center;
+    padding:2px
+}
+
+/*Adds border and background for table headings*/
+#result th{
+    position: sticky;
+    color: white;
+    background-color: black;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    text-align: center;
+    padding:2px;
+    z-index:1;
+}
+
+/*formatting to allow the table headers to stay in place*/
+#result th:nth-child(1) {
+    left: 0;
+    z-index: 2; 
+}
+
+/*formatting to allow the table headers to stay in place*/
+#result th:not(:first-child) {
+    top: 0;
+    z-index: 1;
+}
+
+/*Even rows of the table are highlighted for visibility*/
+#result td:nth-child(even){
+    background-color: beige;
+}
+
+/*formatting for number input boxes*/
+input[type="number"]{
+    padding:5px;
+    width:33%;
+}
+
+/*formatting for hovering over the submit button*/
+input[type="button"]:hover{
+    color: darkgray;
+}
