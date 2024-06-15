@@ -1,6 +1,6 @@
 /*
 File: style.css
-GUI Assignment: #3, Adding a multiplication table to a website
+GUI Assignment: #4, Adding a multiplication table to a website
 Garrett Bacon, UMass Lowell Computer Science, Garrett_Bacon@student.uml.edu
 This file does the styling for my table site.
 */
@@ -33,11 +33,7 @@ form{
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 2px solid black;
-    border-left: 2px solid black;
-    border-top: 2px solid black;
-    border-right: 2px solid black;
-    border-radius: 5px;
+
 }
 
 /*Header styling for the error message*/

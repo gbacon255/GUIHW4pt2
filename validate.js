@@ -1,3 +1,9 @@
+/*
+File: init.js
+GUI Assignment: #4, Making a dynamic table with multiple tabs
+Garrett Bacon, UMass Lowell Computer Science, Garrett_Bacon@student.uml.edu
+This file validates the user input and also handles tab creation
+*/
 $(document).ready(function(){
     
     //Take our error message fields and hide them until they are needed
@@ -18,6 +24,7 @@ $(document).ready(function(){
     $("#HighSEnd").hide();
 
     var currentTab=1;
+    var numTabs=1;
     initializeTab();
 
     //initialize the sliders
@@ -148,7 +155,8 @@ $(document).ready(function(){
         //get the table html from where its stored
         var table = $(`#${currentTab}`).html();
         if(table){
-            var tabNum = $("#tabs .ui-tabs-panel").length + 1;
+            //create a new tab to house our dynamic table, current state of previous tab is saved
+            var tabNum = currentTab + 1;
             var tabName = "Table "+tabNum;
             var tabID = tabNum;
 
@@ -156,18 +164,37 @@ $(document).ready(function(){
             $("#tabs").append('<div id="' + tabID + '" class = "mult">' + table + '</div>');
             $("#tabs").tabs("refresh");
             currentTab++;
+            numTabs++;
         } else{
             //throw an error if there is not a table (Depreciated edge case)
             console.log("here");
             $("#result").html("<h5>Please generate a table!<h5>");
         }
     });
+    //Adds functionality to remove the tabs when the x button is clicked
+    $("#tabList").on("click", ".ui-icon-close", function() {
+        if(numTabs == 1){
+            
+        } else{
+            var panelId = $(this).closest("li").remove().attr("aria-controls");
+            $("#" + panelId).remove();
+            //if the panel is the current working tab, update it to 
+            if (panelId == currentTab){
+                currentTab--;
+            }
+            $("#tabs").tabs("refresh");
+            numTabs--; //decrement our tab number
+        }
+
+    });
     //when the clear tab button is pressed we get rid of all the tabs
     $("#clearTabs").click(function(event){
-        $("#tabs").html(''); //zeroize the html for tabs
-        $("#tabs").append('<ul id="tabList"></ul>')
+        $("#tabs").tabs("destroy");
+        $("#tabs").empty();
+        $("#tabs").append('<ul id="tabList"></ul>');
         initializeTab(); //create a first tab
         currentTab = 1; //reset the tab counter
+        numTabs =1;
     });
 });
 
