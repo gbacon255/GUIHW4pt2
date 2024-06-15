@@ -6,6 +6,7 @@ This file validates the user input and also handles tab creation
 */
 $(document).ready(function(){
     
+
     //Take our error message fields and hide them until they are needed
     $("#errorTStart").hide();
     $("#errorTEnd").hide();
@@ -73,7 +74,7 @@ $(document).ready(function(){
             $("#HighTStart").hide();
             $("#LowTStart").show();
         }
-        if($("#topStart").val() > 75){
+        else if($("#topStart").val() > 75){
             $("#LowTStart").hide();
             $("#errorTStart").hide();
             $("#HighTStart").show();
@@ -81,7 +82,6 @@ $(document).ready(function(){
             $("#LowTStart").hide();
             $("#HighTStart").hide();
             $("#errorTStart").hide();
-            console.log("ts input");
             var value = $(this).val(); //pulls the value from our input
             $("#tSSlider").slider("value",value); //takes that value and updates the slider with it
             validate(currentTab); //validates numbers and generates table
@@ -94,7 +94,7 @@ $(document).ready(function(){
             $("#HighTEnd").hide();
             $("#LowTEnd").show();
         }
-        if($("#topEnd").val() > 75){
+        else if($("#topEnd").val() > 75){
             $("#LowTEnd").hide();
             $("#errorTEnd").hide();
             $("#HighTEnd").show();
@@ -102,7 +102,6 @@ $(document).ready(function(){
             $("#HighTEnd").hide();
             $("#LowTEnd").hide();
             $("#errorTEnd").hide();
-            console.log("ts input");
             var value = $(this).val(); //pulls the value from our input
             $("#tESlider").slider("value",value); //takes that value and updates the slider with it
             validate(currentTab); //validates numbers and generates table
@@ -115,13 +114,11 @@ $(document).ready(function(){
             $("#HighSStart").hide();
             $("#LowSStart").show();
         }
-        if($("#sideStart").val() > 75){
+        else if($("#sideStart").val() > 75){
             $("#LowSStart").hide();
             $("#errorSStart").hide();
             $("#HighSStart").show();
         }else{
-
-            console.log("ts input");
             var value = $(this).val(); //pulls the value from our input
             $("#sSSlider").slider("value",value); //takes that value and updates the slider with it
             validate(currentTab); //validates numbers and generates table
@@ -134,12 +131,11 @@ $(document).ready(function(){
             $("#HighSEnd").hide();
             $("#LowSEnd").show();
         }
-        if($("#sideEnd").val() > 75){
+        else if($("#sideEnd").val() > 75){
             $("#LowSEnd").hide();
             $("#errorSEnd").hide();
             $("#HighSEnd").show();
         }else{
-            console.log("ts input");
             var value = $(this).val(); //pulls the value from our input
             $("#sESlider").slider("value",value); //takes that value and updates the slider with it
             validate(currentTab); //validates numbers and generates table
@@ -167,7 +163,6 @@ $(document).ready(function(){
             numTabs++;
         } else{
             //throw an error if there is not a table (Depreciated edge case)
-            console.log("here");
             $("#result").html("<h5>Please generate a table!<h5>");
         }
     });
@@ -182,24 +177,26 @@ $(document).ready(function(){
             if (panelId == currentTab){
                 currentTab--;
             }
-            $("#tabs").tabs("refresh");
+            $("#tabs").tabs("refresh"); 
             numTabs--; //decrement our tab number
         }
 
     });
     //when the clear tab button is pressed we get rid of all the tabs
     $("#clearTabs").click(function(event){
+        //Functionality to destroy every tab and initialize a new blank tab
         $("#tabs").tabs("destroy");
         $("#tabs").empty();
         $("#tabs").append('<ul id="tabList"></ul>');
         initializeTab(); //create a first tab
         currentTab = 1; //reset the tab counter
-        numTabs =1;
+        numTabs =1; //reduce our tabs number
     });
 });
 
 //initialize our tabs
 function initializeTab(){
+    //creates a blank tab
     $("#tabs").tabs();
     var tabNum = 1;
     var tabName = "Table "+tabNum;
@@ -215,17 +212,17 @@ function initializeTab(){
 //moved validation to its own function to clean up code, checks for four valid inputs before generating
 function validate(currentTab){
     var validNum = 0;
-    if($("#topStart").val() < -75){
+    if(parseInt($("#topStart").val()) < -75){
         $("#errorTStart").hide();
         $("#HighTStart").hide();
         $("#LowTStart").show();
     }
-    if($("#topStart").val() > 75){
+    else if($("#topStart").val() > 75){
         $("#LowTStart").hide();
         $("#errorTStart").hide();
         $("#HighTStart").show();
     }
-    if($("#topStart").val() ==""){
+    else if($("#topStart").val() ==""){
         $("#LowTStart").hide();
         $("#HighTStart").hide();
         $("#errorTStart").show();
@@ -242,12 +239,12 @@ function validate(currentTab){
         $("#HighTEnd").hide();
         $("#LowTEnd").show();
     }
-    if($("#topEnd").val() > 75){
+    else if($("#topEnd").val() > 75){
         $("#LowTEnd").hide();
         $("#errorTEnd").hide();
         $("#HighTEnd").show();
     }
-    if($("#topEnd").val() ==""){
+    else if($("#topEnd").val() ==""){
         $("#HighTEnd").hide();
         $("#LowTEnd").hide();
         $("#errorTEnd").show();
@@ -264,12 +261,12 @@ function validate(currentTab){
         $("#HighSStart").hide();
         $("#LowSStart").show();
     }
-    if($("#sideStart").val() > 75){
+    else if($("#sideStart").val() > 75){
         $("#LowSStart").hide();
         $("#errorSStart").hide();
         $("#HighSStart").show();
     }
-    if($("#sideStart").val() ==""){
+    else if($("#sideStart").val() ==""){
         $("#HighSStart").hide();
         $("#LowSStart").hide();
         $("#errorSStart").show();
@@ -287,12 +284,12 @@ function validate(currentTab){
         $("#HighSEnd").hide();
         $("#LowSEnd").show();
     }
-    if($("#sideEnd").val() > 75){
+    else if($("#sideEnd").val() > 75){
         $("#LowSEnd").hide();
         $("#errorSEnd").hide();
         $("#HighSEnd").show();
     }
-    if($("#sideEnd").val() ==""){
+    else if($("#sideEnd").val() ==""){
         $("#HighSEnd").hide();
         $("#LowSEnd").hide();
         $("#errorSEnd").show();
